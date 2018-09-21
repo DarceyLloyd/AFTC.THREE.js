@@ -1,0 +1,456 @@
+// Functions
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+  
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  
+  @return $string;
+}
+
+
+
+/* Collection of quick CSS styles which are commonly used */
+
+
+/* STYLING OF PHP ERROR MESSAGES IN WAMP */
+.xdebug-error { font-size: 10px !important; }
+pre {background: #FFFFFF; border: 1px solid; font-size: 10px !important; }
+
+/* Fix form sizes */
+textarea,input,select,button {
+  box-sizing: border-box;
+}
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+@for $i from 1 through 10 {
+  
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+$numListFontSizes: 8,10,11,12,14,16,18,20,21,22,23,24,26,28,30,32,34,36,38,40,46,52,64,72,96,102;
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+@each $num in $numListFontSizes {
+  .font-size-#{$num}, .txt-#{$num} { 
+    font-size: #{$num}px; }
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+$commonColors: 
+#FFFFFF, #EEEEEE, #DDDDDD, #CCCCCC, #BBBBBB, #AAAAAA, #999999, #666666, #454545, #303030, #202020, #111111,
+#FFCC00, #395F9E, #D01820, #00ADEF,
+#CC0000, #00CC00, #0000CC,#CCCC00,#CC00CC,#00CCCC,
+#990000, #009900, #000099,#999900,#990099,#009999;
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+@each $color in $commonColors {
+
+  $colString: " " + $color;
+  $selectorName: str-replace($colString, ' #', '');
+
+  .bg-#{$selectorName} {
+    background: $color;
+  }
+
+  .border-#{$selectorName} {
+    border: 1px solid $color;
+  }
+
+  .text-color-#{$selectorName}, .txt-#{$selectorName} {
+    color: $color;
+  }
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+$numListRotations: 0,45,90,135,180,225,270,315;
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+@each $num in $numListRotations {
+
+  .rotate-#{$num} { 
+    transform: rotate(#{$num}deg);
+    -webkit-transform: rotate(#{$num}deg);
+    -moz-transform: rotate(#{$num}deg);
+    -o-transform: rotate(#{$num}deg);
+    -ms-transform: rotate(#{$num}deg);
+  }
+
+  .rotate-neg-#{$num} { 
+    transform: rotate(-#{$num}deg);
+    -webkit-transform: rotate(-#{$num}deg);
+    -moz-transform: rotate(-#{$num}deg);
+    -o-transform: rotate(-#{$num}deg);
+    -ms-transform: rotate(-#{$num}deg);
+  }
+
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+@for $i from 1 through 20 {
+  $t: $i*10;
+  $v: $i/10;
+  .scale-#{$t} { 
+    transform: scale($v, 1);
+    -webkit-transform: scale($v, 1);
+    -moz-transform: scale($v, 1);
+    -o-transform: scale($v, 1);
+    -ms-transform: scale($v, 1);    
+  }
+
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+$numListBorderRadius: 0,1,2,3,4,5,10,11,12,14,15;
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+@each $num in $numListBorderRadius {
+
+  .round-#{$num} { 
+    border-radius: $num; 
+    -moz-border-radius: $num;
+    -webkit-border-radius: $num; 
+  }
+
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+$numListFixedSpacing: 
+0,1,2,3,4,5,10,15,20,25,30,40,50,60,70,80,90,100,125,150,175,200,225,250,275,300,350,400,450,500,550,600,650,700,750,800,860,960;
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+@each $num in $numListFixedSpacing {
+
+  .w-#{$num} { 
+    width: $num;
+  }
+
+  .h-#{$num} {
+    height:#{$num}px; 
+  }
+
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+$numListPercentageWidths: 0,24,25,32,33,49,50,65,66,74,75,99,100;
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+@each $num in $numListPercentageWidths {
+
+  .w-#{$num}p { 
+    width: #{$num}#{"%"};
+  }
+
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+$numListMargPadGap: 0,1,2,3,4,5,10,15,20,25,30,40,50,75,100,150,200,250,300,350,400,450,500;
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+@each $num in $numListMargPadGap {
+  .hgap-#{$num} {
+    display: block; 
+    height:#{$num}px; 
+  }
+
+  .margin-#{$num} {
+    margin: $num;
+  }
+
+  .padding-#{$num} {
+    padding: $num;
+  }
+
+  //
+
+  .margin-left-#{$num} {
+    margin-left: $num;
+  }
+
+  .margin-right-#{$num} {
+    margin-right: $num;
+  }
+
+  .margin-top-#{$num} {
+    margin-top: $num;
+  }
+
+  .margin-bottom-#{$num} {
+    margin-bottom: $num;
+  }
+
+  // 
+
+  .padding-left-#{$num} {
+    padding-left: $num;
+  }
+
+  .padding-right-#{$num} {
+    padding-right: $num;
+  }
+
+  .padding-top-#{$num} {
+    padding-top: $num;
+  }
+
+  .padding-bottom-#{$num} {
+    padding-bottom: $num;
+  }
+
+  // 
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Manual outputs
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+.round-left {
+  border-radius: 5px 0px 0px 5px;
+  -moz-border-radius: 5px 0px 0px 5px;
+  -webkit-border-radius: 5px 0px 0px 5px;
+}
+
+.round-right {
+  border-radius: 0px 5px 5px 0px;
+  -moz-border-radius: 0px 5px 5px 0px;
+  -webkit-border-radius: 0px 5px 5px 0px;
+}
+
+.round-top {
+  border-radius: 5px 5px 0px 0px;
+  -moz-border-radius: 5px 5px 0px 0px;
+  -webkit-border-radius: 5px 5px 0px 0px;
+}
+
+.round-bottom {
+  border-radius: 0px 0px 5px 5px;
+  -moz-border-radius: 0px 0px 5px 5px;
+  -webkit-border-radius: 0px 0px 5px 5px;
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+.box-shadow-top {
+  -webkit-box-shadow: 0px -5px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px -5px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px -5px 5px 0px rgba(0,0,0,0.75);
+}
+
+.box-shadow-bottom {
+  -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+}
+
+.box-shadow-left {
+  -webkit-box-shadow: -5px 0px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: -5px 0px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: -5px 0px 5px 0px rgba(0,0,0,0.75);
+}
+
+.box-shadow-right {
+  -webkit-box-shadow: 5px 0px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 5px 0px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 5px 0px 5px 0px rgba(0,0,0,0.75);
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+
+
+
+/* STYLING OF PHP ERROR MESSAGES IN WAMP */
+.xdebug-error { font-size: 10px !important; }
+pre {background: #FFFFFF; border: 1px solid; font-size: 10px !important; }
+
+/* Fix form sizes */
+textarea,input,select,button {
+  box-sizing: border-box;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.bgFacebook {
+  background: #395f9e;
+}
+
+.bgGoogle {
+  background: #d01820;
+}
+
+.bgTwitter {
+  background: #00adef;
+}
+
+.padding-auto {
+  margin: auto;
+}
+
+.margin-auto {
+  margin: auto;
+}
+
+.text-align-left, .txt-left { text-align: left; }
+.text-align-right, .txt-right { text-align: right; }
+.text-align-center, .txt-center { text-align: center; }
+
+
+
+.hand {
+  cursor: pointer;
+}
+
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+
+.pos-fixed { position: fixed; }
+.pos-relative { position: relative; }
+.pos-absolute { position: absolute; }
+.pos-static { position: static; }
+
+.display-none { display: none; }
+.display-block { display: block; }
+.display-inline-block { display: inline-block; }
+.inline-block { display: inline-block; }
+.display-inline { display: inline; }
+.display-table { display: table; }
+
+.visible { visibility: visible; }
+.hidden { visibility: hidden; }
+
+.center { text-align: center; }
+.text-align-center { text-align: center; }
+.text-align-left { text-align: left; }
+.text-align-right { text-align: right; }
+
+.float-left { float: left; }
+.float-right { float: right; }
+
+.overflow-none { overflow: none; }
+.overflow-hidden { overflow: hidden; }
+.overflow-visible { overflow: visible; }
+.overflow-scroll { overflow: scroll; }
+
+
+
+.white-space-normal { white-space: normal !important; }
+.white-space-nowrap { white-space: nowrap !important; }
+
+.txt-bold { font-weight: bold; }
+.txt-normal { font-weight: normal; }
+.txt-underline { text-decoration: underline; }
+.txt-underline-none { text-decoration: none; }
+.txt-nounderline { text-decoration: none; }
+.txt-no-wrap { white-space: nowrap !important; }
+.no-wrap { white-space: nowrap !important; }
+.single-line { white-space: nowrap !important; }
+.txt-italic { font-style: italic; }
+.italic { font-style: italic; }
+
+
+
+
+
+.flex-container {
+  display: flex;
+}
+
+.flex-container .col {
+  overflow: hidden;
+}
+
+.flex-container .col-order-1 { order: 1; }
+.flex-container .col-order-2 { order: 2; }
+.flex-container .col-order-3 { order: 3; }
+.flex-container .col-order-4 { order: 4; }
+
+.flex-container .col-fluid {
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.flex-container .col-fixed {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+
+
+@media print
+{
+  .no-print, .no-print *
+  {
+    display: none !important;
+  }
+}
+
+.clearFix {
+  content: " "; /* Older browser do not support empty content */
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+
+.clearFixAfter:after {
+  content: " "; /* Older browser do not support empty content */
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}

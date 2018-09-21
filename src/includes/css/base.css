@@ -1,0 +1,62 @@
+html,
+body {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: #FFFFFF;
+}
+
+#no-webgl {
+    width: 100%;
+    text-align: center;
+}
+
+#renderCanvas {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+    background: #000000;
+}
+
+#preloader {
+    position: absolute;
+    z-index: 20;
+    width: 100%;
+    text-align: center;
+    background: #CC0000;
+}
+
+#preloader .bar {
+    z-index: 21;
+    position: absolute;
+    height: 40px;
+    margin: auto;
+    background: #009900;
+}
+
+#preloader .message {
+    z-index: 22;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    font-size: 26px;
+    color: #FFFFFF;
+}
+
+#info {
+    position: absolute;
+    z-index: 100;
+    bottom:0;
+    width: 100%;
+    height:auto;
+    background: rgba(0,0,0,0.7);
+    opacity: 0.7;
+}
